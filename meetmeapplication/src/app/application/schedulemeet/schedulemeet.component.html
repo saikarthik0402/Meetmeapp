@@ -1,0 +1,152 @@
+
+<i class="fa fa-times p-3 cursor-pointer text-secondary opacity-5" mat-dialog-close></i>
+<mat-dialog-content>
+<mat-stepper [linear]="true" #stepper>
+    <mat-step label="Download Template">
+      <div class="modal-content">
+       
+        <div class="modal-header">
+          <h4 id="uploadFilesModalTitle" class="modal-title">Download Attendee Template</h4>
+        </div>
+     
+        <div class="modal-body">
+      
+            <div class="dz-message custom-file-boxed-label">
+              <img class="avatar avatar-xl avatar-4by3 mb-3" src="../../../assets/images/download.gif" alt="Image Description">
+              <h5>Download Template from Here</h5>
+              <button class="btn btn-primary" (click)="downloadTemplate()">Download Template</button>
+            </div>
+  
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" matStepperNext>Next</button>
+        </div>
+        <!-- End Footer -->
+      </div>
+    </mat-step>
+
+    <!--Choose Date and Time Slots-->
+    <mat-step label="Date And Time">
+      <div class="modal-content">
+       
+        <div class="modal-header">
+          <h4 id="uploadFilesModalTitle" class="modal-title">Select the Date</h4>
+        </div>
+     
+        <div class="modal-body">
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Enter a date range</mat-label>
+  
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date" required>
+              <input matEndDate formControlName="end" placeholder="End date" required>
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
+  
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" matStepperPrevious data-dismiss="modal" aria-label="Close">Previous</button>
+          <button type="button" class="btn btn-primary" matStepperNext (click)="GetValue()">Next</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!--Uplaod Attendee List-->
+    <mat-step label="Upload Attendee List">
+      <div class="modal-content">
+       
+        <div class="modal-header">
+          <h4 id="uploadFilesModalTitle" class="modal-title">Upload Attendee List</h4>
+        </div>
+     
+        <div class="modal-body">
+          <!-- Dropzone -->
+          <div id="attachFilesLabel" class="js-dropzone dropzone-custom custom-file-boxed dz-clickable" appFileupload (fileDropped)="onFileDropped($event)"
+          *ngIf="role.isFileUploaded?.value == null ">
+            <div class="dz-message custom-file-boxed-label">
+
+              <input class= "uploader" type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+              <img class="avatar avatar-xl avatar-4by3 mb-3" src="../../../assets/images/file.png" alt="Image Description"
+              width="63" height="64" viewBox="0 0 63 64">
+                    <h5>Drag and drop your file here</h5>
+              <p class="mb-2">or</p>
+              <button for="fileDropRef" class="btn btn-primary">Browse Files</button>
+            </div>
+          </div>
+
+          <div class="col mb-3 mb-lg-5" style="width:30rem" *ngIf="role.isFileUploaded?.value !=null "> <!--EXCEL -->
+            <!-- Card -->
+            <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
+              <div class="card-header">
+                <small>{{role.isFileUploaded?.value?.size}}</small>
+  
+                <!-- Unfold -->
+                <div class="hs-unfold ml-auto">
+                  <a class="js-hs-unfold-invoker btn btn-icon btn-lg card-unfold rounded-circle" href="javascript:;" data-hs-unfold-options="{
+                       &quot;target&quot;: &quot;#filesGridDropdown5&quot;,
+                       &quot;type&quot;: &quot;css-animation&quot;
+                     }" data-hs-unfold-target="#filesGridDropdown5" data-hs-unfold-invoker="" [ngClass]="{'btn-ghost-secondary':isclicked}" [mat-menu-trigger-for]="menu">
+                   <i class="fa fa-ellipsis-v"></i>
+                  </a>
+  
+                  <mat-menu #menu="matMenu">
+                  <div id="filesGridDropdown5">
+                    <span class="dropdown-header">Settings</span>
+  
+                    
+                    <a class="dropdown-item">
+                      <i class="fa fa-download"></i> Download
+                    </a>
+  
+                    <div class="dropdown-divider"></div>
+  
+                    <a class="dropdown-item" (click)="delete()">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </div>
+                  </mat-menu>
+                </div>
+                <!-- End Unfold -->
+              </div>
+  
+              <div class="card-body">
+                <img class="avatar" src="../../../assets/images/excel.png" alt="Image Description">
+  
+                <a class="stretched-link" href="#"></a>
+              </div>
+  
+              <div class="card-body">
+                <h5 class="card-title">{{role.isFileUploaded?.value?.name}}</h5>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+        
+        </div>
+           
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" matStepperPrevious data-dismiss="modal" aria-label="Close">Previous</button>
+          <button type="button" class="btn btn-primary" matStepperNext (click)="submitdata()">Submit Data</button>
+        </div>
+        <!-- End Footer -->
+      </div>
+    </mat-step>
+     
+  </mat-stepper>
+</mat-dialog-content>
+
+  
+  
+  
+  
+  
+  

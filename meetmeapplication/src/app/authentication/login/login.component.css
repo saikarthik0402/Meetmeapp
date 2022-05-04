@@ -1,0 +1,30 @@
+.card {
+
+    transition: transform 2s;
+    transform-style: preserve-3d;
+}
+
+.card-transform{
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+.button-transform
+{
+    backface-visibility: hidden;
+}
+
+
+.alert {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 90%;
+    height:auto;
+    margin-left: 10px;
+    }
+    
+.alert-danger {
+        background-image: none;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+}

@@ -1,0 +1,62 @@
+
+<div id="register">
+    <div class="card z-index-0" [ngClass] ="{'card-transform':isclicked}">
+        <div class="card-header text-center pt-4">
+          <h5>Register</h5> 
+          <img src="../../assets/images/meetmelogo.png" width="200px" height="200px" style="margin-top: -20px; margin-bottom: -40px;">
+        </div>
+    
+        <div class="card-body">
+          <form role="form text-left" [formGroup] = "signupform" (ngSubmit) = "onSubmit()" autocomplete="on">
+
+            <error-handling [field] = "signupform.get('accounttype')"></error-handling>
+            <div class="mb-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Account Type</mat-label>
+                <mat-select formControlName = "accounttype">
+                  <mat-option value="convenor">Convenor</mat-option>
+                  <mat-option value="organiser">Organiser</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <error-handling [field] = "signupform.get('fname')"></error-handling>
+            <div class="mb-3">
+              <input formControlName="fname" type="text" class="form-control" placeholder="First Name" aria-label="Name" aria-describedby="email-addon" name="fname">
+            </div>
+    
+            <error-handling [field] = "signupform.get('lname')"></error-handling>
+            <div class="mb-3">
+                <input formControlName="lname" type="text" class="form-control" placeholder="Last Name" aria-label="Name" aria-describedby="email-addon" name="lname">
+              </div>
+            
+            <error-handling [field] = "signupform.get('email')"></error-handling>
+            <div class="mb-3" [ngClass]="{'form-control-error':errortype=='email'}">
+              <input formControlName="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" autocomplete="email">
+            </div>
+
+            <error-handling [field] = "signupform.get('password')"></error-handling>
+            <div class="mb-3" [ngClass]="{'form-control-error':errortype=='password'||errortype=='mismatch'}">
+              <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" autocomplete="new-password">
+            </div>
+    
+            <error-handling [field] = "signupform.get('repass')"></error-handling>
+            <div class="mb-3" [ngClass]="{'form-control-error':errortype=='mismatch'}" >
+                <input formControlName="repass" type="password" class="form-control" placeholder="Retype Password" aria-label="Password" aria-describedby="password-addon" autocomplete="new-password">
+              </div>
+    
+            <error-handling [checkbox] = "signupform.get('checkbox')"></error-handling>
+            <div class="form-check form-check-info text-left">
+              <input formControlName="checkbox" class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="">
+              <label class="form-check-label" for="flexCheckDefault">
+                I agree the <a class="text-dark font-weight-bolder">Terms and Conditions</a>
+              </label>
+            </div>
+            <div class="text-center">
+              <input type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2" value="Sign Up" [ngClass] = "{'button-transform':isclicked}">
+            </div>
+            <p class="text-sm mt-3 mb-0" (click)="signup()">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p>
+          </form>
+        </div>
+      </div>
+    </div>

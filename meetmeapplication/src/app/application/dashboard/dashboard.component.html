@@ -1,0 +1,230 @@
+<div class="bg-gray-100">
+  <div class="content container-fluid" style="height: 20rem;">
+  </div>
+</div>
+
+<div class="content container-fluid" style="margin-top: -18rem;">
+
+  <div class="row">
+    <div class="col-lg-4 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+
+        <div class="card-body" style="padding: 0;">
+          <mat-calendar></mat-calendar>
+        </div>
+      </div>
+      <!-- End Card -->
+    </div>
+
+    <div class="col-lg-8 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+        <!-- Header -->
+        <div class="card-header">
+          <h4 class="card-header-title">Attendee Meetings</h4>
+        </div>
+
+          <div class="card-body card-body-height card-body-centered" *ngIf="role.attendeedata?.value?.length == 0">
+            <img class="avatar avatar-xxl mb-3" src="../../../assets/images/empty.png" alt="No Attendees to show">
+            <p class="card-text">No Attendees Available</p>
+          </div>
+
+        <div class="card-body card-body-height" style="padding: 0;" *ngIf="role.attendeedata?.value?.length > 0">
+        <div class="table-responsive datatable-custom">
+          <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+          <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
+            <thead class="thead-light">
+              <tr role="row">
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 222.575px; padding-left: 5%;" aria-sort="ascending">Name</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 137.688px; padding-left: 6%;">Meeting Time</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px; padding-left: 5%;">Meeting Location</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 100.637px;">Meeting Organizer</th>
+            </thead>
+
+            <tbody>
+              <tr role="row" class="odd" *ngFor="let attendee of role.attendeedata?.value" >
+        
+                  <td class="table-column-pl-0">
+                    <a class="d-flex align-items-center">
+                      <div class="avatar avatar-sm avatar-soft-dark avatar-circle mr-3" style ="margin-left: 10px;" >
+                        <span class="avatar-initials">{{attendee?.name[0]}}</span>
+                      </div>
+                      <div class="ml">
+                        <h5 class="h5 mb-0">{{attendee?.name}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                        <span class="font-size-sm text-body">{{attendee?.email}}</span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>
+                     <div class="ml" *ngIf="attendee?.meetingstatus == 'ATTENDING'" style="padding-left: 3rem;">
+                        <h5 class="h5 mb-0">{{attendee?.date}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                        <span class="font-size-sm text-body" style="margin-left: 10px;">{{attendee?.starttime}}-{{attendee?.endtime}}</span>
+                      </div>
+                      <div class="col-auto col-md-3 order-md-2" *ngIf="attendee?.meetingstatus == 'PENDING'">
+                        <span class="badge badge-soft-warning badge-pill" >PENDING Confirmation</span>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="col-auto col-md-3 order-md-2" style="padding-right: -40rem;">
+                      <span class="font-size-sm text-break">{{attendee?.location}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="ml">
+                      <h5 class="h5 mb-0">{{attendee?.ORGANISERNAME}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                      <span class="font-size-sm text-body">{{attendee?.ORGANISEREMAIL}}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            
+          </table>
+        </div>
+        </div>
+        
+        </div>
+  
+      </div>
+ 
+    </div>
+  </div>
+  </div>
+
+  <div class="card mb-3 mb-lg-5" style="margin-left:30px; margin-right:30px" *ngIf="role.role.value=='CONVENOR'">
+    <!-- Card -->
+    <div class="card h-100">
+      <!-- Header -->
+      <div class="card-header">
+        <h4 class="card-header-title">Recent Organisers List</h4>
+
+        <div class="col-sm-auto">
+          <a class="btn btn-secondary" style="font-weight: 400;" (click)="InviteUser()">
+            <i class="fa fa-user" style="margin-right: 5px;"></i>Invite Organiser 
+          </a>
+        </div>
+      </div>
+  
+      
+      <div class="card-body card-body-height card-body-centered" *ngIf="role.otheruserdata.value?.length == 0">
+        <img class="avatar avatar-xxl mb-3" src="../../../assets/images/empty.png" alt="No Attendees to show">
+        <p class="card-text">No Organiser Available to Show</p>
+      </div>
+
+      <div class="card-body card-body-height" style="padding: 0;" *ngIf="role.otheruserdata.value?.length >0">
+        <div class="table-responsive datatable-custom">
+          <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+          <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
+            <thead class="thead-light">
+              <tr role="row">
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 222.575px; margin-left: 50%;" aria-sort="ascending">Organiser Name</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 137.688px;">Date of Invitation</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px;">Schedule Upload Status</th>
+            </thead>
+
+                <tbody>
+                  
+                  <tr role="row" class="odd" *ngFor="let organiser of role.otheruserdata?.value ">
+            
+                      <td class="table-column-pl-0">
+                        <a class="d-flex align-items-center">
+                          <div class="avatar avatar-sm avatar-soft-dark avatar-circle mr-3" style ="margin-left: 10px;" >
+
+                            <span class="avatar-initials">{{organiser?.USER_FNAME[0]}}</span>
+                          </div>
+                          <div class="ml">
+                            <h5 class="h5 mb-0">{{organiser?.USER_FNAME}} {{organiser?.USER_LNAME}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                            <span class="font-size-sm text-body">{{organiser?.USER_EMAIL}}</span>
+                          </div>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="ml">
+                            <h5 class="h5 mb-0" style="margin-top: 5px;">{{organiser?.date}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-auto col-md-3 order-md-2">
+                          <span class="badge badge-soft-warning badge-pill" *ngIf="organiser?.status=='PENDING'">Schedule Upload Pending</span>
+                          <span class="badge badge-soft-success badge-pill" *ngIf="organiser?.status=='COMPLETED'">Schedule Uploaded</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div> 
+    </div>
+  
+      <div class="card mb-3 mb-lg-5" style="margin-left:30px; margin-right:30px" *ngIf="role.role.value=='ORGANISER'">
+        <!-- Card -->
+        <div class="card h-100">
+          <!-- Header -->
+          <div class="card-header">
+            <h4 class="card-header-title">Convenor's Task</h4>
+          </div>
+        
+          <div class="card-body card-body-height card-body-centered" *ngIf="role.otheruserdata.value?.length == 0">
+            <img class="avatar avatar-xxl mb-3" src="../../../assets/images/empty.png" alt="No Attendees to show">
+            <p class="card-text">No Organiser Available to Show</p>
+          </div>
+    
+          <div class="card-body card-body-height" style="padding: 0;" *ngIf="role.otheruserdata.value?.length > 0">
+            <div class="table-responsive datatable-custom">
+              <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+              <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
+                <thead class="thead-light">
+                  <tr role="row">
+                    <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 222.575px; margin-left: 50%;" aria-sort="ascending">Organiser Name</th>
+                    <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 137.688px;">Date of Invitation</th>
+                    <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px;">Schedule Upload Status</th>
+                    <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px;"></th>
+                </thead>
+                <tbody>
+          
+                  <tr role="row" class="odd" *ngFor="let organiser of role.otheruserdata?.value">
+            
+                      <td class="table-column-pl-0">
+                        <a class="d-flex align-items-center">
+                          <div class="avatar avatar-sm avatar-soft-dark avatar-circle mr-3" style ="margin-left: 10px;" >
+                            <span class="avatar-initials">{{organiser?.USER_FNAME[0]}}</span>
+                          </div>
+                          <div class="ml">
+                            <h5 class="h5 mb-0">{{organiser?.USER_FNAME}} {{organiser?.USER_LNAME}}<i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                            <span class="font-size-sm text-body">{{organiser?.USER_EMAIL}}</span>
+                          </div>
+                        </a>
+                      </td>
+                      <td>
+                         <div class="ml">
+                            <h5 class="h5 mb-0" style="margin-top: 5px;">{{organiser?.date}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top endorsed"></i></h5>
+                          </div>
+                      </td>
+                      <td>
+                        <div class="col-auto col-md-3 order-md-2">
+                          <span class="badge badge-soft-warning badge-pill" *ngIf="organiser?.status=='PENDING'">Schedule Upload Pending</span>
+                          <span class="badge badge-soft-success badge-pill" *ngIf="organiser?.status=='COMPLETED'">Schedule Uploaded</span>
+                        </div>
+                      </td>
+                      <td>
+                        <button  [disabled] ="organiser?.status!='PENDING'" mat-flat-button color="primary" style="border-radius: 3px; padding: 10px;" (click)="UploadAttendee(organiser)"><i class="fa fa-upload"></i>  Upload Meet</button>
+                      </td>
+                      
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div> 
+        </div>
+      
+  
+  
+  
+  
+
+
+

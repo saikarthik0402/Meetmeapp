@@ -1,0 +1,124 @@
+<div class="account">
+
+<div class="row">
+  <div class="col-lg-9">
+    <!-- Card -->
+    <div class="card mb-3 mb-lg-5">
+      <!-- Profile Cover -->
+      <div class="profile-cover">
+        <div class="profile-cover-img-wrapper">
+          <img id="profileCoverImg" class="profile-cover-img" src="../../assets/images/header.jpg" alt="Image Description">
+
+          <!-- Custom File Cover -->
+          
+          <!-- End Custom File Cover -->
+        </div>
+      </div>
+      <!-- End Profile Cover -->
+
+      <!-- Avatar -->
+      <label class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar" for="avatarUploader">
+        <img id="avatarImg" class="avatar-img" src="../../assets/images/profile.png" alt="Image Description">
+
+      </label>
+      
+      <div class="card-body" data-select2-id="307">
+        <div class="row" data-select2-id="306">
+          <div class="col-sm-5" data-select2-id="305">
+            <span class="d-block font-size-sm mb-2">Account Type :  <i class="tio-help-outlined" data-toggle="tooltip" data-placement="top" title="" data-original-title="Your Account Type" ></i>
+            <a style="font-weight:600;">{{role.role.value}}</a>
+          </span>
+           </div>
+        </div>
+        </div>
+    
+    </div>
+
+    <div class="card mb-3 mb-lg-5">
+      <div class="card-header">
+        <h2 class="card-title h4">Basic information</h2>
+      </div>
+
+      <div class="card-body">
+     
+        <form>
+          
+          <div class="row form-group">
+            <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Full name <i class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Displayed on public forums, such as Front."></i></label>
+
+            <div class="col-sm-9">
+              <div class="input-group input-group-sm-down-break">
+                <input type="text" class="form-control" name="firstName" id="firstNameLabel" placeholder="Your first name" aria-label="Your first name" value={{role.convenordata.value?.USER_FNAME}}>
+                <input type="text" class="form-control" name="lastName" id="lastNameLabel" placeholder="Your last name" aria-label="Your last name" value={{role.convenordata.value?.USER_LNAME}}>
+              </div>
+            </div>
+          </div>
+       
+          <div class="row form-group">
+            <label for="emailLabel" class="col-sm-3 col-form-label input-label">Email</label>
+
+            <div class="col-sm-9">
+              <input autocomplete="username" type="email" class="form-control" name="email" id="emailLabel" placeholder="Email" aria-label="Email" value={{role.convenordata.value?.USER_EMAIL}} disabled>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+  
+      </div>
+
+    </div>
+ 
+  
+    <div id="passwordSection" class="card mb-3 mb-lg-5">
+      <div class="card-header">
+        <h4 class="card-title">Change your password</h4>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+        <!-- Form -->
+        <form id="changePasswordForm">
+          <!-- Form Group -->
+          <div class="row form-group">
+            <label for="currentPasswordLabel" class="col-sm-3 col-form-label input-label">Current password</label>
+
+            <div class="col-sm-9">
+              <input type="password" autocomplete="current-password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
+            </div>
+          </div>
+       
+          <div class="row form-group">
+            <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label input-label">Confirm new password</label>
+
+            <div class="col-sm-9">
+              <div class="mb-3">
+                <input autocomplete="new-password" type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Confirm your new password" aria-label="Confirm your new password">
+              </div>
+
+              <h5>Password requirements:</h5>
+
+              <p class="font-size-sm mb-2">Ensure that these requirements are met:</p>
+
+              <ul class="font-size-sm">
+                <li>Minimum 8 characters long - the more, the better</li>
+                <li>At least one lowercase character</li>
+                <li>At least one uppercase character</li>
+                <li>At least one number, symbol, or whitespace character</li>
+              </ul>
+            </div>
+          </div>
+          
+
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+   
+      </div>
+    
+    </div>
+    
+  </div>

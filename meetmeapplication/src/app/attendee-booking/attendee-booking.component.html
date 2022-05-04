@@ -1,0 +1,60 @@
+<div class="card z-index-0">
+    <div class="card-header text-center pt-4">
+      <h5>Booking</h5>
+      <img src="../../assets/images/meetmelogo.png" width="200px" height="200px" style="margin-top: -20px; margin-bottom: -40px;">
+    </div>
+
+    <div class="card-body">
+
+      <form role="form text-left" autocomplete="on">
+        
+        <div style="margin-left: 3.5rem;" >
+            <mat-form-field appearance="outline">
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="a@example.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div style="margin-left: 3.5rem;" *ngIf="isattedeevalid">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose the Available Convenor to schedule meet</mat-label>
+            <mat-select [formControl]="convenor">
+              <mat-option *ngFor="let convenor of appdata.availableorganisers?.value" [value]="convenor">
+                {{convenor}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="convenor.hasError('required')">Please choose a Convenor to proceed</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div style="margin-left: 3.5rem;" *ngIf="isattedeevalid && convenor?.value!=''">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose your Preffered date*</mat-label>
+            <mat-select [formControl]="date">
+              <mat-option *ngFor="let date of getAvailbleDates(appdata.availabledates?.value)" [value]="date?.date">
+                          {{date.date}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="date.hasError('required')">Please choose a date to proceed</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div style="margin-left: 3.5rem;" *ngIf="isattedeevalid && convenor?.value !=''">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose your Preffered time Slot*</mat-label>
+            <mat-select [formControl]="time">
+              <mat-option *ngFor="let ts of getAvailableTimeSlots(appdata.availabletimeslots?.value)" [value]="ts.starttime+' '+ts.endtime+ ' ' + ts.meetid +' '+ ts.cname+' '+ts.convenor">
+                {{ts.starttime}} - {{ts.endtime}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="time.hasError('required')">Please choose a time slot to proceed </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="text-center">
+          <input class="btn bg-gradient-dark my-4 mb-2" value="Submit" style="width: 60%;" (click)="Submit()" />
+        </div>
+      </form>
+    </div>
+  </div>

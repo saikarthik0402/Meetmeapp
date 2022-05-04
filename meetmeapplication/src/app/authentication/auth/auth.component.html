@@ -1,0 +1,56 @@
+<div>
+    <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
+        <div class="container">
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item" routerLink="/dashboard">
+                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page">
+                  <i class="fa fa-tachometer opacity-6  me-1" aria-hidden="true"></i>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/account">
+                <a class="nav-link me-2">
+                  <i class="fa fa-user opacity-6  me-1" aria-hidden="true"></i>
+                  Account
+                </a>
+              </li>
+              <li class="nav-item" routerLink = "/signup">
+                <a class="nav-link me-2">
+                  <i class="fa fa-user-circle opacity-6  me-1" aria-hidden="true"></i>
+                  Sign Up
+                </a>
+              </li>
+              <li class="nav-item" routerLink = "/login">
+                <a class="nav-link me-2">
+                  <i class="fa fa-key opacity-6  me-1" aria-hidden="true"></i>
+                  Sign In
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <section class="h-100-vh mb-8">
+        <div class="page-header align-items-start section-height-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../../../assets/images/curved14.jpg');">
+          <span class="mask bg-gradient-dark opacity-6"></span>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-5 text-center mx-auto">
+                <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+                <p class="text-lead text-white">Please Login Or Signup using the Form Below</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+            <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+             <router-outlet name="auth"></router-outlet>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>

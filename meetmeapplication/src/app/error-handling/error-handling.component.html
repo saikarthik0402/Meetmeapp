@@ -1,0 +1,40 @@
+<div *ngIf="field && (field.dirty || field.touched)">
+
+    <div *ngIf = "field.errors?.required; then required else validation" > </div>
+</div>
+
+<ng-template #required>
+    <small  style="font-size: small; font-style: italic;" class="text-danger">This is a required field</small>
+</ng-template>
+
+<ng-template #validation>
+    <div *ngIf = "field.errors?.passwordMatched" >
+    <small  style="font-size: small; font-style: italic;" class="text-danger">Password not matched</small>
+    </div>
+
+    <div *ngIf = "field.errors?.minlength" >
+        <small  style="font-size: small; font-style: italic;" class="text-danger">Password must contain atleast 8 characters</small>
+   </div>
+
+   <div *ngIf = "field.errors?.maxlength" >
+    <small  style="font-size: small; font-style: italic;" class="text-danger">Password Length cannot exceed 20 characters</small>
+</div>
+
+   <div *ngIf = "field.errors?.passwordMatched" >
+       <small  style="font-size: small; font-style: italic;" class="text-danger">Password not matched</small>
+    </div>
+
+</ng-template>
+
+<div *ngIf="checkbox && (checkbox.dirty || checkbox.touched)">
+    <div *ngIf = "!checkbox.value">
+        <small  style="font-size: small; font-style: italic;" class="text-danger">Please Accept the Terms and Conditions to Procced</small>
+    </div>
+</div>
+
+
+
+
+
+
+

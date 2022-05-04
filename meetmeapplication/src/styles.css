@@ -1,0 +1,27 @@
+
+.warning-snackbar {
+    background-image: none;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  .success-snackbar
+  {
+    background-image: none;
+     color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+
+  /* Let's get this party started */
+::-webkit-scrollbar {
+  width: 0.6125rem;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(55, 55, 56, 0.6);
+  visibility: hidden
+}
+::-webkit-scrollbar-thumb:window-inactive {
+background: #fff;
+}

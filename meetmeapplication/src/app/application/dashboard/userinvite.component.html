@@ -1,0 +1,29 @@
+<form class="modal-content">
+
+    <div class="modal-header">
+      <h4 id="inviteUserModalTitle" class="modal-title">Invite users</h4>
+
+      <i class="fa fa-times p-3 cursor-pointer text-secondary opacity-5" mat-dialog-close></i>
+    </div>
+
+    <div class="modal-body">
+      <!-- Form Group -->
+      <div class="form-group">
+        <div class="input-group input-group-merge mb-2 mb-sm-0">
+          <div class="input-group-prepend" id="fullName">
+            <span class="input-group-text">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+
+          <input [formControl]="email" type="email" class="form-control" name="fullName" placeholder="Enter email to Invite User" aria-label="Search name or emails" aria-describedby="fullName" >
+          <div class="input-group-append input-group-append-last-sm-down-none">
+            <a class="btn btn-primary d-none d-sm-block" style="height: 2.6rem;" (click) ="Invite()">Invite</a>
+          </div>
+        </div>
+        <span style="font-size: 15px; margin-left: 5px; color: red;">{{error}}</span>
+      </div>
+
+    </div>
+
+  </form>

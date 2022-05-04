@@ -1,0 +1,31 @@
+@import '../../../assets/css/bootstrap.min.css';
+
+.model-content
+{
+    padding:5px;
+}
+.modal-title
+{
+    font-weight: 500;
+}
+
+.h5
+{
+    font-weight: 400;
+}
+.ml-3
+{
+    height: 35px;
+}
+.d-block
+{
+    height: 2px;
+}
+.avatar-circle,.avatar
+{
+    background-color: transparent;
+}
+.mpy
+{
+    padding: 0.5rem;
+}

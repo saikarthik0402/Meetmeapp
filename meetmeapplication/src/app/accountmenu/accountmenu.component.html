@@ -1,0 +1,23 @@
+    <div class="dropdown-item-text">
+      <div class="media align-items-center">
+        <div>
+          <img src="../../../assets/images/profile.png" alt="Image Description" style="width: 1.8rem; border-radius: 50%; margin-left: -20%; margin-right: 10%;">
+        </div>
+        <div class="media-body">
+          <span class="card-title h5">{{role.convenordata.value?.USER_FNAME}} {{role.convenordata.value?.USER_LNAME}}</span>
+          <span class="card-text">{{role.convenordata.value?.USER_EMAIL}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown-divider"></div>
+
+    <a class="dropdown-item" routerLink="/account">
+      <span class="text-truncate pr-2" title="Profile &amp; account">Profile &amp; account</span>
+    </a>
+
+    <div class="dropdown-divider"></div>
+    
+    <a class="dropdown-item" (click)="logout()">
+      <span class="text-truncate pr-2" title="Sign out">Sign out</span>
+    </a>
