@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit{
   dataavailable!:boolean;
   user = new BehaviorSubject<any>(null);
 
+  date?:Date | null;
+
   val :any;
   isAttendeeListEmpty:boolean = true;
 
@@ -35,6 +37,11 @@ export class DashboardComponent implements OnInit{
     dialogconfig.width = '70%';
 
     this.dialog.open(InviteUserDialog,dialogconfig)
+  }
+
+  displayDate()
+  {
+    console.log(this.date);
   }
 
   UploadAttendee(user:any)

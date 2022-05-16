@@ -8,7 +8,7 @@ const API_KEY=
 
 const db = new dbConn();
 
-function GenerateTimeSlots(start, end) {
+function GenerateTimeSlots(start, end,scheduleid) {
     const time = ["10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00","15:30","16:00","16:30"]
     var arr = new Array();
     var dt = new Date(start);
@@ -20,7 +20,7 @@ function GenerateTimeSlots(start, end) {
             let date = new Date(dt).setHours(hr,min);
     
             console.log(date);
-            arr.push(new Date(date));
+            arr.push(new Array(new Date(date),scheduleid));
         })
         
         dt.setDate(dt.getDate() + 1);
@@ -70,7 +70,7 @@ class Booking
             if(res[0].user_id != currentuserid )
             {
             let insertdata =[data[0],res[0].user_id];
-            db.Insert(insertdata,"InsertoConvenor").then(()=>{
+            db.InserttoConvenor(insertdata).then(()=>{
               resolve([{status:200},{message:`You have successfully invited  ${data[1]} `,successfull:true}])
             })
             .catch(err=>{
@@ -116,25 +116,28 @@ class Booking
           .then((res) => scheduleid = res[0].scheduleid);
      }
      attendee.forEach(async (user) => {
-        user['scheduleid'] = scheduleid;  
-        this.SendInvitationEmail(user.AttendeeEmail);   
+        user['scheduleid'] = scheduleid;   
      });
 
      let sdate = new Date(date.start);
      let edate = new Date(date.end);
 
-     let bookings = GenerateTimeSlots(sdate,edate);
+     let bookings = GenerateTimeSlots(sdate,edate,scheduleid);
 
      return new Promise((resolve,reject)=>{
-        db.Insert([bookings,scheduleid],"booking")
+        db.InserttoBooking(bookings)
         .then(()=>{
-
-          db.UploadAttendee(attendee)
-          .then(()=>{ 
-            resolve([{status:200},{message:`You have succesfully uploaded the Attendee List`}])
-          }).catch(err => {throw err})
+            db.UploadAttendee(attendee)
+            .then(()=>{ 
+              resolve([{status:200},{message:`You have succesfully uploaded the Attendee List`}])
+            })
+            .catch(err => 
+              {
+                console.log(err);
+              })
         })
         .catch(err => {
+          console.log(err);
           reject([{status:401},{message:"Error Uploading the attendee List. Please Try Again:)"}]);
         })
   })
@@ -155,7 +158,7 @@ attendeeDetails(req)
           }
           
           if(res.length >=1)
-          {
+          { 
             resolve([{status:200},{attendee:ParseTimeSlots(res),isattendeefound:true}]);
           }
         })
@@ -349,10 +352,6 @@ async SendInvitationEmail(email)
 ,
     
   };
-      
-     sgMail.send(message)
-     .then((respose))
-     .catch((error) => console.log(error.message));
   }
 }
 

@@ -200,21 +200,10 @@ class dbConn{
   })
 }
 
-async Insert(data, param)
+async InserttoConvenor(data)
 {
-  let sql;
-  if(param == "booking")
-  {
-    sql = `insert into booking (timeslots, scheduleid) values (?,?);
-    `
-  }
-  else if (param == "InsertoConvenor")
-  {
-    sql = `insert into convenororganiser (convenorid, organiserid) values (?, ?)`
-  }
-  else{
-    sql = '';
-  }
+  
+  let sql = `insert into convenororganiser (convenorid, organiserid) values (?, ?)`;
   
   return new Promise(async (resolve,reject) =>{
      
@@ -238,6 +227,35 @@ async Insert(data, param)
             });
     });
   }
+
+async InserttoBooking(bookings) // Add All the available time
+{
+  let  sql = `insert into booking (timeslots,scheduleid) values ?;`
+
+  return new Promise(async (resolve,reject) =>{
+     
+        await pool.getConnection()
+        .then((connection)=>{
+          
+             connection.query(sql,[bookings],function(err){
+
+              if(err){
+                console.log(err);
+              }
+              else{
+                resolve([{status:200},{msg:"added"}])
+              }
+
+             })
+
+          })
+          .catch((error)=>
+            {
+              console.log(error);
+            });
+    });
+  }
+
 
   UploadAttendee(attendee)
   {

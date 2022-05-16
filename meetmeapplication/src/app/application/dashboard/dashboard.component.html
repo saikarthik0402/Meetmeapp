@@ -11,7 +11,7 @@
       <div class="card h-100">
 
         <div class="card-body" style="padding: 0;">
-          <mat-calendar></mat-calendar>
+          <mat-calendar [(selected)]="date" (click)="displayDate()"></mat-calendar>
         </div>
       </div>
       <!-- End Card -->
@@ -38,7 +38,7 @@
               <tr role="row">
                 <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 222.575px; padding-left: 5%;" aria-sort="ascending">Name</th>
                 <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 137.688px; padding-left: 6%;">Meeting Time</th>
-                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px; padding-left: 5%;">Meeting Location</th>
+                <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Country: activate to sort column ascending" style="width: 124.163px;">Meeting Location</th>
                 <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 100.637px;">Meeting Organizer</th>
             </thead>
 

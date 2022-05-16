@@ -25,7 +25,7 @@ app.use(cors(corsoptions));
 app.use(cookieParser())
 
 app.use(express.static(__dirname+'/assets'));
-console.log = function(){}  // Disable logs in production
+
 
 app.post('/login',(req,res)=>{
 
